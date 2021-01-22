@@ -1,0 +1,13 @@
+[package]
+org = "riyafa"
+name = "rest_service"
+version = "0.1.0"
+
+[[platform.java11.dependency]]
+artafactId = "mysql-connector-java"
+version = "8.0.22"
+path = "/home/riyafa/Documents/Workspace/Ballerina/mysql-connector-java-8.0.22.jar"
+groupId = "mysql"
+
+[build-options]
+observabilityIncluded = true
