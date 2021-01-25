@@ -1,0 +1,30 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "ballerina",
+            "request": "launch",
+            "name": "Ballerina Debug",
+            "script": "${file}",
+            "networkLogs": false
+        },
+        {
+            "type": "ballerina",
+            "request": "launch",
+            "name": "Ballerina Test",
+            "script": "${file}",
+            "debugTests": true
+        },
+        {
+            "type": "ballerina",
+            "request": "attach",
+            "name": "Ballerina Remote",
+            "script": "${file}",
+            "debuggeeHost": "127.0.0.1",
+            "debuggeePort": "5005"
+        }
+    ]
+}

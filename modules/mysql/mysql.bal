@@ -1,7 +1,10 @@
 import rest_service.records;
-import ballerina/sql;
 import ballerina/log;
+import ballerina/sql;
 import ballerinax/mysql;
+
+
+
 
 // Todo: use configurable
 string dbUser = "riyafa";
@@ -37,9 +40,11 @@ public function query() returns records:Movie[] {
 # Description
 #
 # + movie - Parameter Description  
-public function insert(records:Movie movie) {
-    sql:ParameterizedQuery insQuery = `INSERT INTO movies.movie (title, genre, director, release_year) VALUES (${movie.
+# + return - Return Value Description
+public function insert(records:Movie movie) returns error? {
+    sql:ParameterizedQuery insQuery = `INSERT INTO movies.movies (title, genre, director, release_year) VALUES (${movie.
     title}, ${movie.genre}, ${movie.director}, ${movie.release_year})`;
+    sql:ExecutionResult result = check msClient->execute(insQuery);
 }
 
 function stop() returns error? {
