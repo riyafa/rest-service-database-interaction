@@ -33,3 +33,15 @@ function testSqlInsert() returns error? {
         test:assertFail("Invalid response");
     }
 }
+
+@test:Config {dependsOn: [testSqlInsert]}
+function testSqlDelete() returns error? {
+    http:Client cli = check new ("http://localhost:9090");
+    var resp = cli->get("/movies/delete/xyz", targetType = json);
+    if (resp is json) {
+        json expected = "Successfully deleted movie";
+        test:assertEquals(resp, expected);
+    } else {
+        test:assertFail("Invalid response");
+    }
+}

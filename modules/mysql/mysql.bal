@@ -3,15 +3,14 @@ import ballerina/log;
 import ballerina/sql;
 import ballerinax/mysql;
 
-
-
-
 // Todo: use configurable
 string dbUser = "riyafa";
 string dbPassword = "";
 
 mysql:Client msClient;
 
+# Description
+# + return - Return Value Description  
 function init() returns error? {
     msClient = check new ("localhost", dbUser, dbPassword);
 }
@@ -46,7 +45,17 @@ public function insert(records:Movie movie) returns error? {
     title}, ${movie.genre}, ${movie.director}, ${movie.release_year})`;
     sql:ExecutionResult result = check msClient->execute(insQuery);
 }
+# Description
+#
+# + movieName - Parameter Description
+# + return - Return Value Description  
+public function delete(string movieName) returns error? {
+    sql:ParameterizedQuery insQuery = `DELETE FROM movies.movies where title = ${movieName}`;
+    sql:ExecutionResult result = check msClient->execute(insQuery);
+}
 
+# Description
+# + return - Return Value Description  
 function stop() returns error? {
     check msClient.close();
 }

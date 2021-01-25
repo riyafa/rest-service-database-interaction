@@ -32,4 +32,19 @@ service /movies on new http:Listener(9090) {
             log:printError("Error when responding", err = result);
         }
     }
+
+    resource function get delete/[string movieName](http:Caller caller, http:Request req) {
+        var err = mysql:delete(movieName);
+        http:Response resp = new; 
+        if(err is error) {
+            resp.statusCode = 500;
+            resp.setJsonPayload({"error": "Failed to delete movie"});
+        } else {
+            resp.setJsonPayload("Successfully deleted movie");
+        }
+        var result = caller->respond(resp);
+        if (result is error) {
+            log:printError("Error when responding", err = result);
+        }
+    }
 }
